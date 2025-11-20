@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio N° 1</title>
+</head>
+<body>
+
+    <header>
+        <h1>Manipulación del DOM - Usando Selectores</h1>
+    </header>
+
+    <main>
+        <section>
+            <p id="texto-principal">Texto 1 - Capturado por id</p>
+            <p class="texto-secundario">Texto 2 - Capturado por clase</p>
+            <p class="texto-secundario">Texto 3 - Capturado por clase</p>
+            <p>Texto 4 - Capturado por tagname</p>
+        </section>
+    </main>
+    
+
+
+
+    <script>
+        //AQUÍ CREAMOS LA LÓGICA
+
+        // 1.- Capturar elemento por id
+        let textoPrincipal = document.getElementById("texto-principal");
+        // let textoEtiqueta = textoPrincipal.textContent;
+        textoPrincipal.innerText = textoPrincipal.textContent.toUpperCase();
+
+
+        // 2.- Capturar elementos por clase
+        let textosSecundarios = document.getElementsByClassName("texto-secundario");
+        // textosSecundarios[0].textContent = textosSecundarios[0].textContent.toLowerCase();
+        // textosSecundarios[1].textContent = textosSecundarios[1].textContent.toLowerCase();
+        //console.log(textosSecundarios);
+        //console.log("Cantidad elementos:", textosSecundarios.length);
+
+        // for (let index = 0; index < textosSecundarios.length; index++) {
+        //     let texto = textosSecundarios[index].textContent;
+        //     textosSecundarios[index].textContent = texto.toLowerCase();
+        // };
+
+        textosSecundarios = [...textosSecundarios];
+        textosSecundarios.forEach(element => {
+            let texto = element.textContent;
+            element.textContent = texto.toLowerCase();
+            element.style.color = "blue";
+        });
+
+        // 3.- Capturar elementos por el tagname <p>
+
+        let parrafos = document.getElementsByTagName("p");
+        
+        parrafos = [...parrafos];
+        parrafos.forEach(parrafo => {
+            let texto = parrafo.textContent;
+            // let textoHTML = `<em>${texto }</em>`;
+            // parrafo.innerHTML = textoHTML;
+            parrafo.style.fontStyle = "italic";
+        });
+
+
+        // 4.- Capturar elemento con querySelector
+
+        textoPrincipal = document.querySelector("#texto-principal");
+
+        textoPrincipal.style.backgroundColor = "bisque";
+
+
+        let primerTextoSecundario = document.querySelector(".texto-secundario");
+        primerTextoSecundario.style.backgroundColor = "yellow";
+
+        // 5.- Capturar elementos con querySelectorAll
+
+        parrafos = document.querySelectorAll("p");
+        parrafos.forEach(parrafo => {
+            console.log(parrafo);
+        });
+
+
+    </script>
+
+</body>
+</html>
