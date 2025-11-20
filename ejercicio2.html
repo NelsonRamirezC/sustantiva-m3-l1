@@ -17,12 +17,109 @@
                 <label for="fnombre">Nombre: </label>
                 <input type="text" id="fnombre" name="fnombre">
             </div>
+            <div>
+                <label for="frut">Rut: </label>
+                <input type="text" id="frut" name="frut" placeholder="1111111-1">
+            </div>
+            <div>
+                <label for="ffecha">Fecha: </label>
+                <input type="date" id="ffecha" name="ffecha">
+            </div>
+
+            <div>
+                <label for="fcodigo">Código producto: </label>
+                <input type="text" id="fcodigo" name="fcodigo">
+            </div>
+
+            <div>
+                <label for="fopcion">Ingrese su preferencia [tenis, padel, ping pong]: </label>
+                <input type="text" id="fopcion" name="fopcion">
+            </div>
+
+            <div>
+                <button id="btn-enviar">Enviar</button>
+            </div>
 
         </section>
     </main>
 
 
     <script>
+
+        document.getElementById("btn-enviar").addEventListener("click", function() {
+
+            // 1. CAPTURAR NOMBRE
+            let fnombre = document.querySelector("#fnombre").value;
+            fnombre = fnombre.toLowerCase();
+            fnombre = fnombre.trim();
+
+            console.log("Nombre:", fnombre);
+            console.log("Cantidad letras: ", fnombre.length);
+
+
+            // 2. Capturar un rut
+            console.log("-".repeat(15));
+            let frut = document.querySelector("#frut").value;
+            // separar el número de rut del digito verificador
+            let resultado = frut.split("-");
+            let numeroRut = resultado[0];
+            // QUITAR O REEMPLAZAR PUNTOS EN NÚMERO RUT
+            numeroRut = numeroRut.replaceAll(".", "");
+
+            let digitoVerificador = resultado[1];
+
+            console.log("Número rut:", numeroRut);
+            console.log("DV:", digitoVerificador);
+
+
+            // 3. separar una fecha
+            
+            let ffecha = document.querySelector("#ffecha").value;
+            console.log("Fecha texto:", ffecha);
+            ffecha = ffecha.split("-");
+            let anio = ffecha[0];
+            let mes = ffecha[1];
+            let dia = ffecha[2];
+            
+            let formatoFecha = `${dia}/${mes}/${anio}`;
+            console.log(formatoFecha);
+
+            // 4. Identificas códigos o strings que comiencen con...
+
+            let fcodigo = document.getElementById("fcodigo").value;
+
+            console.log("Código producto:", fcodigo);
+    
+            if(fcodigo.startsWith("111")){
+                console.log("Es un producto de caegoría hogar.");
+            }else if(fcodigo.startsWith("222")){
+                console.log("Es un producto de caegoría Dormitorio.");
+            }else if(fcodigo.startsWith("333")){
+                console.log("Es un producto de caegoría Tecnología.");
+            }else{
+                console.log("Producto sin clafificar en el sistema.");
+            }
+
+
+            // 4.- string que incluyan un texto -- uso de includes
+
+            let talleres = "tenis, padel, ping pong";
+
+            let fopcion = document.querySelector("#fopcion").value;
+
+            fopcion = fopcion.toLowerCase(); // dejamos en minúsculas.
+            fopcion = fopcion.trim(); //quitamos los espacios.
+
+            if(talleres.includes(fopcion)){
+                console.log("El taller indicado existe, puedes tomarlo.");
+            }else{
+                console.log(`El taller ${fopcion} no existe.`);
+            }
+
+
+
+        });
+        
 
     </script>
     
